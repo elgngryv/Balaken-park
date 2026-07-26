@@ -195,10 +195,10 @@ export default function App() {
 
     const text = encodeURIComponent(
       `Salam! Balakən Park-da bilet/masa bron etmək istəyirəm.\n` +
-        `👤 Adım: ${modalName}\n` +
-        `📞 Telefon: ${modalPhone}\n` +
-        `🎟️ Mövzu: ${modalTicket}\n` +
-        `💬 Qeyd: ${modalMsg || 'Ətraflı məlumat almaq istəyirəm.'}`
+      `👤 Adım: ${modalName}\n` +
+      `📞 Telefon: ${modalPhone}\n` +
+      `🎟️ Mövzu: ${modalTicket}\n` +
+      `💬 Qeyd: ${modalMsg || 'Ətraflı məlumat almaq istəyirəm.'}`
     );
 
     triggerToast('WhatsApp-a yönləndirilirsiniz...');
@@ -221,10 +221,10 @@ export default function App() {
 
     const text = encodeURIComponent(
       `✨ Balakən Park Bron Sorğusu\n` +
-        `👤 Ad və Soyad: ${contactName}\n` +
-        `📞 Telefon: ${contactPhone}\n` +
-        `🎯 Xidmət: ${contactService}\n` +
-        `📝 Qeydlər: ${contactMsg || 'Bilet/masa bronu etmək istəyirəm.'}`
+      `👤 Ad və Soyad: ${contactName}\n` +
+      `📞 Telefon: ${contactPhone}\n` +
+      `🎯 Xidmət: ${contactService}\n` +
+      `📝 Qeydlər: ${contactMsg || 'Bilet/masa bronu etmək istəyirəm.'}`
     );
 
     triggerToast('WhatsApp-a yönləndirilirsiniz...');
@@ -240,11 +240,11 @@ export default function App() {
   const handleCalcWaSubmit = () => {
     const text = encodeURIComponent(
       `🧮 Balakən Park Səfər Hesablanması:\n` +
-        `👨‍👩‍👧‍👦 Böyük: ${adults} nəfər, Uşaq: ${kids} nəfər\n` +
-        `🎟️ Paket: ${packageText}\n` +
-        `☕ Samovar Çayı & Menyu: ${lunchChecked ? 'Bəli (+15₼/nəfər)' : 'Xeyr'}\n` +
-        `💰 Təxmini Məbləğ: ${calculatedTotal} ₼\n` +
-        `Sən də bu hekayənin bir hissəsi ol — biletlərimi bron etmək istəyirəm!`
+      `👨‍👩‍👧‍👦 Böyük: ${adults} nəfər, Uşaq: ${kids} nəfər\n` +
+      `🎟️ Paket: ${packageText}\n` +
+      `☕ Samovar Çayı & Menyu: ${lunchChecked ? 'Bəli (+15₼/nəfər)' : 'Xeyr'}\n` +
+      `💰 Təxmini Məbləğ: ${calculatedTotal} ₼\n` +
+      `Sən də bu hekayənin bir hissəsi ol — biletlərimi bron etmək istəyirəm!`
     );
 
     triggerToast('WhatsApp hesablamanız açılır...');
@@ -694,73 +694,7 @@ export default function App() {
             </ol>
           </div>
 
-          <div className="calc-box" data-reveal>
-            <h3>🧮 Səfər Hesablayıcı</h3>
-            <div className="calc">
-              <label>
-                <span>
-                  Böyük sayı: <output>{adults}</output> nəfər
-                </span>
-                <input
-                  type="range"
-                  min="1"
-                  max="10"
-                  value={adults}
-                  onChange={(e) => setAdults(Number(e.target.value))}
-                />
-              </label>
 
-              <label>
-                <span>
-                  Uşaq sayı: <output>{kids}</output> nəfər
-                </span>
-                <input
-                  type="range"
-                  min="0"
-                  max="10"
-                  value={kids}
-                  onChange={(e) => setKids(Number(e.target.value))}
-                />
-              </label>
-
-              <label>
-                <span>Əyləncə Paketi</span>
-                <select
-                  value={packagePrice}
-                  onChange={(e) => {
-                    const val = Number(e.target.value);
-                    setPackagePrice(val);
-                    const found = packagesRef.current.find((p) => p.price === val);
-                    if (found) setPackageText(found.text);
-                  }}
-                >
-                  {packagesRef.current.map((p, idx) => (
-                    <option key={idx} value={p.price}>
-                      {p.text}
-                    </option>
-                  ))}
-                </select>
-              </label>
-
-              <label className="calc__check">
-                <input
-                  type="checkbox"
-                  checked={lunchChecked}
-                  onChange={(e) => setLunchChecked(e.target.checked)}
-                />
-                <span>Samovar Çayı & Menyu (+15₼ / nəfər)</span>
-              </label>
-
-              <div className="calc__result">
-                <span>Təxmini Məbləğ:</span>
-                <strong>{calculatedTotal} ₼</strong>
-              </div>
-
-              <button className="btn btn--wa btn--full" onClick={handleCalcWaSubmit}>
-                💬 Hesablamanı WhatsApp-a Göndər
-              </button>
-            </div>
-          </div>
         </div>
       </section>
 

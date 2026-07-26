@@ -414,7 +414,7 @@ export default function App() {
               <br />
               <em>unudulmaz</em>
               <br />
-              əyləncə dünyası
+              yaşayış kompleksi
             </h1>
           </div>
 

@@ -45,12 +45,7 @@ export default function App() {
   const [toastState, setToastState] = useState({ text: '', visible: false });
 
   // References
-  const packagesRef = useRef([
-    { text: '🚡 Yalnız Kanat Yolu (5 ₼)', price: 5 },
-    { text: '🎡 Standart Paket (15 ₼)', price: 15 },
-    { text: '🎢 Super Paket (25 ₼)', price: 25 },
-    { text: '👑 VIP Paket (40 ₼)', price: 40 },
-  ]);
+ 
 
   // Toast trigger helper
   const triggerToast = (text) => {
@@ -837,23 +832,7 @@ export default function App() {
               onChange={(e) => setContactPhone(handlePhoneInput(e.target.value))}
               required
             />
-            <select
-              id="waService"
-              style={{
-                padding: '14px',
-                borderRadius: '4px',
-                border: '1px solid var(--line)',
-                background: 'var(--bg)',
-                color: 'var(--ink)',
-              }}
-              value={contactService}
-              onChange={(e) => setContactService(e.target.value)}
-            >
-              <option value="Kanat Yolu & Attraksion Biletləri">🚡 Kanat Yolu & Attraksion Biletləri</option>
-              <option value="Milli Restoran & Masa Bronu">☕ Milli Restoran & Masa Bronu</option>
-              <option value="Süni Göl Qayıq Səyahəti">🛶 Süni Göl Qayıq Səyahəti</option>
-              <option value="Kollektiv / Məktəb Qrupu Gəzintisi">🚌 Kollektiv və ya Qrup Gəzintisi</option>
-            </select>
+         
             <textarea
               id="waMsg"
               rows="3"
@@ -896,27 +875,8 @@ export default function App() {
       </footer>
 
       {/* FLOATING WHATSAPP BUTTON */}
-      <a
-        href="https://wa.me/994501233030?text=Salam!%20Balakən%20Park%20haqqında%20məlumat%20və%20bilet%20bron%20etmək%20istəyirəm."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="float-wa"
-        title="WhatsApp 050 123 30 30"
-      >
-        <svg
-          width="28"
-          height="28"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-        </svg>
-        <span>WhatsApp: 050 123 30 30</span>
-      </a>
+   
+
 
       {/* MODAL */}
       <div className="modal" id="modal" hidden={!modalOpen}>

@@ -1551,7 +1551,6 @@ em {
 
 .hero__photo-img {
   width: 100%;
-  height: min(55vh, 480px);
   object-fit: cover;
   border-radius: var(--radius);
   box-shadow: 0 15px 35px rgba(51, 40, 27, 0.12);

@@ -2,13 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 
 // Import image assets to ensure Vite bundles and hashes them correctly for production
 import avatarImg from './assets/images/balaken_avatar_1785100153474.jpg';
-import heroImg from './assets/images/balaken_park_hero_1785100077280.jpg';
-import cableCarImg from './assets/images/balaken_cable_car_1785100090355.jpg';
-import ferrisWheelImg from './assets/images/balaken_ferris_wheel_1785100101067.jpg';
-import kidsZoneImg from './assets/images/balaken_kids_zone_1785100139917.jpg';
-import lakeBoatsImg from './assets/images/balaken_lake_boats_1785100114112.jpg';
-import restaurantImg from './assets/images/balaken_restaurant_1785100128556.jpg';
-import nightImg from './assets/images/balaken_park_night_1785100164253.jpg';
+import heroImg from "./images/WhatsApp Image 2026-07-27 at 14.46.32 (5).jpeg";
+
 
 const TARGET_WA = '994501233030';
 
@@ -453,16 +448,7 @@ export default function App() {
 
           <div className="hero__visual" data-reveal>
             <img src={heroImg} alt="Balakən Park Hero Mənzərəsi" className="hero__photo-img" fetchPriority="high" loading="eager" />
-            <div className="hero__note">
-              <span className="hero__note-num">1200m</span>
-              <span className="hero__note-txt">
-                Kanat Yolu
-                <br />
-                Panoramik
-                <br />
-                Dağ Mənzərəsi
-              </span>
-            </div>
+
           </div>
 
           <div className="hero__bottom">

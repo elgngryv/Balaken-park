@@ -284,76 +284,76 @@ export default function App() {
   };
 
   // Tickets data
-  const tickets = [
-    {
-      id: 1,
-      category: 'kanat',
-      title: 'Kanat Yolu (Gediş-Gəliş)',
-      image: cableCarImg,
-      badge: 'Top Tələb',
-      tag: null,
-      specs: ['1200 Metr', 'Panoramik', 'Ailəvi'],
-      price: '5 ₼ (Uşaq 3 ₼)',
-      ticketName: 'Kanat Yolu',
-    },
-    {
-      id: 2,
-      category: 'rides',
-      title: 'Şeytan Çarxı (Ferris Wheel)',
-      image: ferrisWheelImg,
-      badge: null,
-      tag: 'Panoram',
-      specs: ['35m hündürlük', 'Ailəvi', '10 dəq'],
-      price: '3 ₼',
-      ticketName: 'Şeytan Çarxı',
-    },
-    {
-      id: 3,
-      category: 'rides',
-      title: 'Avtodrom Bamper Maşınlar',
-      image: ferrisWheelImg, // Utilizes CSS shift
-      badge: null,
-      tag: null,
-      specs: ['2 nəfərlik', 'Şən yarış', '5 dəq'],
-      price: '3 ₼',
-      ticketName: 'Avtodrom Bamper Maşınlar',
-      style: { objectPosition: 'right' },
-    },
-    {
-      id: 4,
-      category: 'kids',
-      title: 'Nağıl Karuseli & Batut',
-      image: kidsZoneImg,
-      badge: 'Uşaq Sevgisi',
-      tag: null,
-      specs: ['2-12 yaş', 'Musiqili', 'Təhlükəsiz'],
-      price: '2 ₼',
-      ticketName: 'Nağıl Karuseli',
-    },
-    {
-      id: 5,
-      category: 'cafe',
-      title: 'Süni Göldə Qayıq Səyahəti',
-      image: lakeBoatsImg,
-      badge: null,
-      tag: null,
-      specs: ['4 nəfərlik qayıq', '15 dəqiqə', 'Sakitlik'],
-      price: '6 ₼',
-      ticketName: 'Göldə Qayıq Səyahəti',
-    },
-    {
-      id: 6,
-      category: 'cafe',
-      title: 'Balakən Maxarası & Samovar Çayı',
-      image: restaurantImg,
-      badge: null,
-      tag: 'Milli Mətbəx',
-      specs: ['Milli resept', 'Açıq hava', 'Ailəvi masalar'],
-      price: '12 ₼-dən',
-      ticketName: 'Masa və Samovar Bronu',
-      btnText: 'Masa Bron Et',
-    },
-  ];
+  // const tickets = [
+  //   {
+  //     id: 1,
+  //     category: 'kanat',
+  //     title: 'Kanat Yolu (Gediş-Gəliş)',
+  //     image: cableCarImg,
+  //     badge: 'Top Tələb',
+  //     tag: null,
+  //     specs: ['1200 Metr', 'Panoramik', 'Ailəvi'],
+  //     price: '5 ₼ (Uşaq 3 ₼)',
+  //     ticketName: 'Kanat Yolu',
+  //   },
+  //   {
+  //     id: 2,
+  //     category: 'rides',
+  //     title: 'Şeytan Çarxı (Ferris Wheel)',
+  //     image: ferrisWheelImg,
+  //     badge: null,
+  //     tag: 'Panoram',
+  //     specs: ['35m hündürlük', 'Ailəvi', '10 dəq'],
+  //     price: '3 ₼',
+  //     ticketName: 'Şeytan Çarxı',
+  //   },
+  //   {
+  //     id: 3,
+  //     category: 'rides',
+  //     title: 'Avtodrom Bamper Maşınlar',
+  //     image: ferrisWheelImg, // Utilizes CSS shift
+  //     badge: null,
+  //     tag: null,
+  //     specs: ['2 nəfərlik', 'Şən yarış', '5 dəq'],
+  //     price: '3 ₼',
+  //     ticketName: 'Avtodrom Bamper Maşınlar',
+  //     style: { objectPosition: 'right' },
+  //   },
+  //   {
+  //     id: 4,
+  //     category: 'kids',
+  //     title: 'Nağıl Karuseli & Batut',
+  //     image: kidsZoneImg,
+  //     badge: 'Uşaq Sevgisi',
+  //     tag: null,
+  //     specs: ['2-12 yaş', 'Musiqili', 'Təhlükəsiz'],
+  //     price: '2 ₼',
+  //     ticketName: 'Nağıl Karuseli',
+  //   },
+  //   {
+  //     id: 5,
+  //     category: 'cafe',
+  //     title: 'Süni Göldə Qayıq Səyahəti',
+  //     image: lakeBoatsImg,
+  //     badge: null,
+  //     tag: null,
+  //     specs: ['4 nəfərlik qayıq', '15 dəqiqə', 'Sakitlik'],
+  //     price: '6 ₼',
+  //     ticketName: 'Göldə Qayıq Səyahəti',
+  //   },
+  //   {
+  //     id: 6,
+  //     category: 'cafe',
+  //     title: 'Balakən Maxarası & Samovar Çayı',
+  //     image: restaurantImg,
+  //     badge: null,
+  //     tag: 'Milli Mətbəx',
+  //     specs: ['Milli resept', 'Açıq hava', 'Ailəvi masalar'],
+  //     price: '12 ₼-dən',
+  //     ticketName: 'Masa və Samovar Bronu',
+  //     btnText: 'Masa Bron Et',
+  //   },
+  // ];
 
   return (
     <>
@@ -616,7 +616,7 @@ export default function App() {
       </section>
 
       {/* ATTRACTIONS & TICKETS */}
-      <section className="section section--paper" id="attractions">
+      {/* <section className="section section--paper" id="attractions">
         <div className="container">
           <div className="head head--row" data-reveal>
             <div>
@@ -696,9 +696,9 @@ export default function App() {
               ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-  
+
 
       {/* STATS */}
       <section className="stats">
@@ -894,7 +894,7 @@ export default function App() {
               onChange={(e) => setContactPhone(handlePhoneInput(e.target.value))}
               required
             />
-       
+
             <textarea
               id="waMsg"
               rows="3"
@@ -1017,7 +1017,7 @@ export default function App() {
           <button className="lightbox__close" onClick={() => setLightboxOpen(false)} aria-label="Bağla">
             ×
           </button>
-          
+
           <button
             className="lightbox__prev"
             onClick={() => {

@@ -12,6 +12,38 @@ import nightImg from './assets/images/balaken_park_night_1785100164253.jpg';
 
 const TARGET_WA = '994501233030';
 
+// Gallery Image Datasets
+const REAL_PHOTOS = Array.from({ length: 17 }, (_, i) => ({
+  src: `/images/gallery/photo_${i + 1}.jpeg`,
+  title: `Real Görüntü - Foto ${i + 1}`,
+  category: 'real'
+}));
+
+const PARK_PHOTOS = Array.from({ length: 16 }, (_, i) => ({
+  src: `/images/park/page_${i + 1}.${i + 1 === 8 ? 'jpg' : 'png'}`,
+  title: `Park Layihə Planı - Səhifə ${i + 1}`,
+  category: 'park'
+}));
+
+const FASAD_PHOTOS = Array.from({ length: 7 }, (_, i) => ({
+  src: `/images/fasad/page_${i + 1}.jpeg`,
+  title: `Fasad Dizaynı - Səhifə ${i + 1}`,
+  category: 'fasad'
+}));
+
+const INTERYER_PHOTOS = Array.from({ length: 8 }, (_, i) => ({
+  src: `/images/interyer/page_${i + 1}.jpeg`,
+  title: `İnteryer Dizaynı - Səhifə ${i + 1}`,
+  category: 'interyer'
+}));
+
+const GALLERY_CATEGORIES = {
+  real: { label: '📸 Real Görüntülər', items: REAL_PHOTOS },
+  park: { label: '🗺️ Layihə Planı', items: PARK_PHOTOS },
+  fasad: { label: '🏛️ Fasad Dizaynları', items: FASAD_PHOTOS },
+  interyer: { label: '🛏️ İnteryer Dizaynları', items: INTERYER_PHOTOS },
+};
+
 export default function App() {
   // Navigation & Scroll states
   const [scrolled, setScrolled] = useState(false);
@@ -19,6 +51,11 @@ export default function App() {
 
   // Filters state
   const [filterCategory, setFilterCategory] = useState('all');
+
+  // Gallery & Lightbox states
+  const [galleryCategory, setGalleryCategory] = useState('real');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
 
   // Modal states
   const [modalOpen, setModalOpen] = useState(false);
@@ -340,8 +377,11 @@ export default function App() {
               <a href="#about" onClick={(e) => handleAnchorClick(e, '#about')}>
                 Haqqımızda
               </a>
-              <a href="#instagram" onClick={(e) => handleAnchorClick(e, '#instagram')}>
-                Instagram Qalereya
+              <a href="#gallery" onClick={(e) => handleAnchorClick(e, '#gallery')}>
+                Qalereya & Layihələr
+              </a>
+              <a href="#downloads" onClick={(e) => handleAnchorClick(e, '#downloads')}>
+                Materiallar (PDF)
               </a>
               <a href="#contact" onClick={(e) => handleAnchorClick(e, '#contact')}>
                 Əlaqə və Ünvan
@@ -419,7 +459,7 @@ export default function App() {
           </div>
 
           <div className="hero__visual" data-reveal>
-            <img src={heroImg} alt="Balakən Park Hero Mənzərəsi" className="hero__photo-img" />
+            <img src={heroImg} alt="Balakən Park Hero Mənzərəsi" className="hero__photo-img" fetchPriority="high" loading="eager" />
             <div className="hero__note">
               <span className="hero__note-num">1200m</span>
               <span className="hero__note-txt">
@@ -635,6 +675,7 @@ export default function App() {
                       alt={ticket.title}
                       className="house__img-photo"
                       style={ticket.style || {}}
+                      loading="lazy"
                     />
                     {ticket.badge && <span className="house__badge">{ticket.badge}</span>}
                   </div>
@@ -664,39 +705,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* TRIP CALCULATOR WITH DIRECT WHATSAPP */}
-      <section className="section" id="calculator">
-        <div className="container split">
-          <div data-reveal>
-            <span className="eyebrow">03 — Səfər və Büdcə Planlayıcısı</span>
-            <h2>
-              Ailəvi istirahət büdçənizi
-              <br />
-              dərhal hesablayın
-            </h2>
-            <p style={{ color: 'var(--muted)', marginBottom: '24px' }}>
-              Gəlməzdən əvvəl neçə nəfərlə gələcəyinizi və istədiyiniz attraksion paketini seçib birbaşa WhatsApp ilə
-              sifariş göndərin:
-            </p>
-            <ol className="steps">
-              <li>
-                <b>Böyük və uşaq sayını seçin</b>
-                <span>Ailə üzvlərinizin sayını təyin edin.</span>
-              </li>
-              <li>
-                <b>Kanat Yolu və Attraksion paketini daxil edin</b>
-                <span>Panoramik gediş-gəliş və əyləncələri seçin.</span>
-              </li>
-              <li>
-                <b>Nəticəni birbaşa WhatsApp-a göndərin</b>
-                <span>Sifarişiniz adı ilə 050 123 30 30 WhatsApp-a göndəriləcək.</span>
-              </li>
-            </ol>
-          </div>
-
-
-        </div>
-      </section>
+  
 
       {/* STATS */}
       <section className="stats">
@@ -720,60 +729,115 @@ export default function App() {
         </div>
       </section>
 
-      {/* INSTAGRAM GALLERY SECTION */}
-      <section className="section section--paper" id="instagram">
+      {/* GALLERY & PROJECT VIEW SECTION */}
+      <section className="section section--paper" id="gallery">
         <div className="container">
           <div className="head head--row" data-reveal>
             <div>
-              <span className="eyebrow">04 — Instagram Qalereyası</span>
-              <h2>@balaken.park Fotostend</h2>
+              <span className="eyebrow">04 — Media və Layihə Qalereyası</span>
+              <h2>Balakən Park Layihə və Real Görüntüləri</h2>
             </div>
-            <a
-              href="https://www.instagram.com/balaken.park?igsh=Nzl2dmtsNGdoY2Fv"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn--insta"
-            >
-              Instagram-da İzləyin
-            </a>
+            <div className="gallery-download-btn">
+              <a href="#downloads" className="btn btn--dark" onClick={(e) => handleAnchorClick(e, '#downloads')}>
+                🗂️ PDF Kitabçaları
+              </a>
+            </div>
           </div>
 
-          <div className="insta-grid" data-reveal>
-            <div className="insta-card">
-              <img src={heroImg} alt="Balakən Park Panorama" className="insta-card__img" />
-              <div className="insta-card__overlay">
-                <span>🚡 Kanat Yolu və Dağ Mənzərəsi</span>
+          {/* Category Tabs */}
+          <div className="gallery-tabs" data-reveal>
+            {Object.keys(GALLERY_CATEGORIES).map((catKey) => (
+              <button
+                key={catKey}
+                className={`gallery-tab-btn ${galleryCategory === catKey ? 'is-active' : ''}`}
+                onClick={() => {
+                  setGalleryCategory(catKey);
+                  setLightboxIndex(0);
+                }}
+              >
+                {GALLERY_CATEGORIES[catKey].label}
+                <span className="gallery-tab-count">
+                  ({GALLERY_CATEGORIES[catKey].items.length})
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Gallery Grid */}
+          <div className="gallery-grid" data-reveal>
+            {GALLERY_CATEGORIES[galleryCategory].items.map((item, idx) => (
+              <article
+                key={idx}
+                className="gallery-card"
+                onClick={() => {
+                  setLightboxIndex(idx);
+                  setLightboxOpen(true);
+                }}
+              >
+                <div className="gallery-card__img-wrap">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="gallery-card__img"
+                    loading="lazy"
+                  />
+                  <div className="gallery-card__overlay">
+                    <span className="gallery-card__zoom-icon">🔍 BAX</span>
+                    <span className="gallery-card__title">{item.title}</span>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PDF DOWNLOAD CENTER */}
+      <section className="section" id="downloads">
+        <div className="container">
+          <div className="head" data-reveal>
+            <span className="eyebrow">05 — Layihə Materialları və Kataloqlar</span>
+            <h2>Orijinal PDF Sənədlərini Yükləyin</h2>
+            <p style={{ color: 'var(--muted)', marginTop: '8px' }}>
+              Balakən Park haqqında bütün detalları, daxili və xarici dizayn kitabçalarını PDF formatında yükləyərək tanış ola bilərsiniz.
+            </p>
+          </div>
+
+          <div className="downloads-grid" data-reveal>
+            <div className="download-card">
+              <div className="download-card__icon">🗺️</div>
+              <div className="download-card__body">
+                <h3>Balakən Park Layihə Kitabçası</h3>
+                <p>Layihə planı, attraksion yerləşməsi və əsas konsepsiya.</p>
+                <span className="download-card__meta">PDF • 34.6 MB</span>
               </div>
+              <a href="/pdf/Balaken_Park-2.pdf" download className="btn btn--dark download-card__btn">
+                📥 Yüklə
+              </a>
             </div>
-            <div className="insta-card">
-              <img src={nightImg} alt="İşıqlı Park" className="insta-card__img" />
-              <div className="insta-card__overlay">
-                <span>🎡 Gecə İşıqlarında Balakən Park</span>
+
+            <div className="download-card">
+              <div className="download-card__icon">🏛️</div>
+              <div className="download-card__body">
+                <h3>Fasad Rəng Vərəqi və Renderlər</h3>
+                <p>Xarici fasad tərtibatı, rəngləri və 3D mənzərələri.</p>
+                <span className="download-card__meta">PDF • 1.0 MB</span>
               </div>
+              <a href="/pdf/Balaken_fasad.pdf" download className="btn btn--dark download-card__btn">
+                📥 Yüklə
+              </a>
             </div>
-            <div className="insta-card">
-              <img src={lakeBoatsImg} alt="Süni Göl" className="insta-card__img" />
-              <div className="insta-card__overlay">
-                <span>🛶 Süni Göl və Qayıq Gəzintisi</span>
+
+            <div className="download-card">
+              <div className="download-card__icon">🛏️</div>
+              <div className="download-card__body">
+                <h3>İnteryer Rəng Vərəqi və Dizayn</h3>
+                <p>Daxili məkan dizaynı, mebel yerləşməsi və interyer vizualı.</p>
+                <span className="download-card__meta">PDF • 0.9 MB</span>
               </div>
-            </div>
-            <div className="insta-card">
-              <img src={restaurantImg} alt="Milli Restoran" className="insta-card__img" />
-              <div className="insta-card__overlay">
-                <span>☕ Samovar Çayı və Balakən Maxarası</span>
-              </div>
-            </div>
-            <div className="insta-card">
-              <img src={ferrisWheelImg} alt="Attraksionlar" className="insta-card__img" />
-              <div className="insta-card__overlay">
-                <span>🎡 Şeytan Çarxı & Avtodrom</span>
-              </div>
-            </div>
-            <div className="insta-card">
-              <img src={kidsZoneImg} alt="Uşaq Zonası" className="insta-card__img" />
-              <div className="insta-card__overlay">
-                <span>✨ Uşaq Karuselləri və Batutlar</span>
-              </div>
+              <a href="/pdf/Balaken_interyer.pdf" download className="btn btn--dark download-card__btn">
+                📥 Yüklə
+              </a>
             </div>
           </div>
         </div>
@@ -952,6 +1016,62 @@ export default function App() {
       <div className={`toast ${toastState.visible ? 'is-visible' : ''}`} id="toast">
         {toastState.text}
       </div>
+
+      {/* LIGHTBOX MODAL */}
+      {lightboxOpen && (
+        <div className="lightbox" id="lightbox">
+          <div className="lightbox__backdrop" onClick={() => setLightboxOpen(false)}></div>
+          <button className="lightbox__close" onClick={() => setLightboxOpen(false)} aria-label="Bağla">
+            ×
+          </button>
+          
+          <button
+            className="lightbox__prev"
+            onClick={() => {
+              const totalItems = GALLERY_CATEGORIES[galleryCategory].items.length;
+              setLightboxIndex((prev) => (prev - 1 + totalItems) % totalItems);
+            }}
+            aria-label="Əvvəlki"
+          >
+            ‹
+          </button>
+
+          <div className="lightbox__content">
+            <img
+              src={GALLERY_CATEGORIES[galleryCategory].items[lightboxIndex].src}
+              alt={GALLERY_CATEGORIES[galleryCategory].items[lightboxIndex].title}
+              className="lightbox__img"
+              loading="eager"
+            />
+            <div className="lightbox__info">
+              <span className="lightbox__title">
+                {GALLERY_CATEGORIES[galleryCategory].items[lightboxIndex].title}
+              </span>
+              <span className="lightbox__index">
+                {lightboxIndex + 1} / {GALLERY_CATEGORIES[galleryCategory].items.length}
+              </span>
+              <a
+                href={GALLERY_CATEGORIES[galleryCategory].items[lightboxIndex].src}
+                download
+                className="btn btn--dark btn--sm lightbox__download"
+              >
+                📥 Şəkli Yüklə
+              </a>
+            </div>
+          </div>
+
+          <button
+            className="lightbox__next"
+            onClick={() => {
+              const totalItems = GALLERY_CATEGORIES[galleryCategory].items.length;
+              setLightboxIndex((prev) => (prev + 1) % totalItems);
+            }}
+            aria-label="Növbəti"
+          >
+            ›
+          </button>
+        </div>
+      )}
     </>
   );
 }

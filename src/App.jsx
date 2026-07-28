@@ -81,13 +81,7 @@ export default function App() {
   // Toast notification states
   const [toastState, setToastState] = useState({ text: '', visible: false });
 
-  // References
-  const packagesRef = useRef([
-    { text: '🚡 Yalnız Kanat Yolu (5 ₼)', price: 5 },
-    { text: '🎡 Standart Paket (15 ₼)', price: 15 },
-    { text: '🎢 Super Paket (25 ₼)', price: 25 },
-    { text: '👑 VIP Paket (40 ₼)', price: 40 },
-  ]);
+
 
   // Toast trigger helper
   const triggerToast = (text) => {
@@ -260,7 +254,6 @@ export default function App() {
       `✨ Balakən Park Bron Sorğusu\n` +
       `👤 Ad və Soyad: ${contactName}\n` +
       `📞 Telefon: ${contactPhone}\n` +
-      `🎯 Xidmət: ${contactService}\n` +
       `📝 Qeydlər: ${contactMsg || 'Bilet/masa bronu etmək istəyirəm.'}`
     );
 
